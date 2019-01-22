@@ -13,29 +13,29 @@ class TranslateViewController: UIViewController, UITextFieldDelegate {
    @IBOutlet weak var textTranslated: UILabel!
    @IBOutlet weak var buttonTranslate: UIButton!
    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+   
    @IBAction func tappedTranslateButton(_ sender: UIButton) {
       toggleActivityIndicator(shown: true)
-      Translate.shared.getTranslate(with: textToTranslate.text!) { (success, translated) in
+      Translate.shared.getTranslate(with: textToTranslate.text ?? "") { (success, translated) in
          self.toggleActivityIndicator(shown: false)
          if success, let translated = translated {
             self.update(translate: translated)
          } else {
-            self.presentAlert()
+            self.presentAlert(with: "The translate failed")
          }
       }
    }
-   
+
    private func toggleActivityIndicator(shown: Bool) {
       buttonTranslate.isHidden = shown
       activityIndicator.isHidden = !shown
    }
    
-   private func update(translate: Translated) {
-      textToTranslate.text = translate.text
-      textTranslated.text = translate.translated
+   private func update(translate: String) {
+      textTranslated.text = translate
    }
-   private func presentAlert() {
-      let alertVC = UIAlertController(title: "Error", message: "The translate failed", preferredStyle: .alert)
+   private func presentAlert(with message: String) {
+      let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
       alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
       present(alertVC, animated: true, completion: nil)
    }

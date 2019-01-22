@@ -10,46 +10,49 @@ import Foundation
 
 class Translate {
    static var shared = Translate()
-   private init() {}
-   private static let translateUrl =
-      URL(string: "https://translation.googleapis.com/language/translate/v2")!
+   init() {}
+   static let translateUrl =
+      URL(string: "https://translation.googleapis.com/language/translate/v2?")!
    
    private var task: URLSessionDataTask?
    
-   func getTranslate(with text: String, callBack: @escaping (Bool, Translated?) -> Void) {
+   func getTranslate(with text: String, callBack: @escaping (Bool, String?) -> Void) {
       let request = createRequest(with: text)
-      let share = URLSession.shared
+      let session = URLSession(configuration: .default)
       
       task?.cancel()
-      task = share.dataTask(with: request) { (data, response, error) in
+      task = session.dataTask(with: request) { (data, response, error) in
          DispatchQueue.main.async {
             guard let data = data, error == nil else {
                callBack(false, nil)
+               print("Text: \(text)")
+               print("Error1")
                return
             }
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                callBack(false, nil)
+               print("Text: \(text)")
+               print("Error2")
                return
             }
-            guard let responseJSON = try? JSONDecoder().decode([String: String].self, from: data),
-               let text = responseJSON["translateURL"], let q = responseJSON["q"] else {
+            guard let responseJSON = try? JSONDecoder().decode(Translations.self, from: data),
+               let translate = responseJSON.translatedText else {
                   callBack(false, nil)
+                  print("Text: \(text)")
+                  print("Error3")
                   return
             }
-            let dataString = String(data: data, encoding: .utf8)
-            let translated = Translated(text:text, translated: q)
-            print("dataString: \(String(describing: dataString)), tranlsated: \(translated)")
-            callBack(true, translated)
+            print("Text: \(text)")
+            callBack(true, translate)
          }
       }
       task?.resume()
    }
    private func createRequest(with text: String) -> URLRequest {
-      let q = text
       let key = "***"
-      let source = "fr"
-      let target = "en"
-      let body = "?key=\(key)&\(q)=langue&source=\(source)&target=\(target)&format=text"
+      let source = "en"
+      let target = "fr"
+      let body = "key=\(key)&source=\(source)&target=\(target)&q=\(text)"
       var request = URLRequest(url: Translate.translateUrl)
       request.httpMethod = "POST"
       request.httpBody = body.data(using: .utf8)

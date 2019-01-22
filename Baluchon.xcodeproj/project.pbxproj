@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC4AF14E21F78B0700EBB6D5 /* JSON_Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4AF14D21F78B0700EBB6D5 /* JSON_Rate.swift */; };
 		ECA4658121F4C49A00D2885C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA4658021F4C49A00D2885C /* AppDelegate.swift */; };
 		ECA4658321F4C49A00D2885C /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA4658221F4C49A00D2885C /* TranslateViewController.swift */; };
 		ECA4658521F4C49A00D2885C /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA4658421F4C49A00D2885C /* ExchangeRateViewController.swift */; };
@@ -16,7 +17,7 @@
 		ECA4659821F4C49C00D2885C /* BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA4659721F4C49C00D2885C /* BaluchonTests.swift */; };
 		ECA465A621F5CD5F00D2885C /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA465A521F5CD5F00D2885C /* Translate.swift */; };
 		ECA465A821F627B600D2885C /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA465A721F627B600D2885C /* Exchange.swift */; };
-		ECA465AA21F6325C00D2885C /* Translated.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA465A921F6325C00D2885C /* Translated.swift */; };
+		ECA465AA21F6325C00D2885C /* JSON_Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA465A921F6325C00D2885C /* JSON_Translate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC4AF14D21F78B0700EBB6D5 /* JSON_Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON_Rate.swift; sourceTree = "<group>"; };
 		ECA4657D21F4C49A00D2885C /* Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA4658021F4C49A00D2885C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA4658221F4C49A00D2885C /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +45,7 @@
 		ECA4659921F4C49C00D2885C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA465A521F5CD5F00D2885C /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
 		ECA465A721F627B600D2885C /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
-		ECA465A921F6325C00D2885C /* Translated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translated.swift; sourceTree = "<group>"; };
+		ECA465A921F6325C00D2885C /* JSON_Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON_Translate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				ECA465A521F5CD5F00D2885C /* Translate.swift */,
-				ECA465A921F6325C00D2885C /* Translated.swift */,
+				ECA465A921F6325C00D2885C /* JSON_Translate.swift */,
 				ECA465A721F627B600D2885C /* Exchange.swift */,
+				EC4AF14D21F78B0700EBB6D5 /* JSON_Rate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,8 +239,9 @@
 				ECA465A621F5CD5F00D2885C /* Translate.swift in Sources */,
 				ECA4658521F4C49A00D2885C /* ExchangeRateViewController.swift in Sources */,
 				ECA4658121F4C49A00D2885C /* AppDelegate.swift in Sources */,
-				ECA465AA21F6325C00D2885C /* Translated.swift in Sources */,
+				ECA465AA21F6325C00D2885C /* JSON_Translate.swift in Sources */,
 				ECA465A821F627B600D2885C /* Exchange.swift in Sources */,
+				EC4AF14E21F78B0700EBB6D5 /* JSON_Rate.swift in Sources */,
 				ECA4658321F4C49A00D2885C /* TranslateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
