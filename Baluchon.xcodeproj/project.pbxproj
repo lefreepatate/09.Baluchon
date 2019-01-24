@@ -66,6 +66,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC801A5721F9BE8E002906F9 /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				ECA465A721F627B600D2885C /* Exchange.swift */,
+				EC4AF14D21F78B0700EBB6D5 /* JSON_Rate.swift */,
+			);
+			path = Exchange;
+			sourceTree = "<group>";
+		};
+		EC801A5821F9BE90002906F9 /* Translate */ = {
+			isa = PBXGroup;
+			children = (
+				ECA465A521F5CD5F00D2885C /* Translate.swift */,
+				ECA465A921F6325C00D2885C /* JSON_Translate.swift */,
+			);
+			path = Translate;
+			sourceTree = "<group>";
+		};
+		EC801A5921F9BE92002906F9 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		ECA4657421F4C49A00D2885C = {
 			isa = PBXGroup;
 			children = (
@@ -87,7 +112,9 @@
 		ECA4657F21F4C49A00D2885C /* Baluchon */ = {
 			isa = PBXGroup;
 			children = (
-				ECA465A421F5CD0200D2885C /* Model */,
+				EC801A5921F9BE92002906F9 /* Weather */,
+				EC801A5821F9BE90002906F9 /* Translate */,
+				EC801A5721F9BE8E002906F9 /* Exchange */,
 				ECA465A321F5CCFF00D2885C /* View */,
 				ECA465A221F5CCFC00D2885C /* Controller */,
 				ECA4658021F4C49A00D2885C /* AppDelegate.swift */,
@@ -122,17 +149,6 @@
 				ECA4658B21F4C49C00D2885C /* LaunchScreen.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		ECA465A421F5CD0200D2885C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				ECA465A521F5CD5F00D2885C /* Translate.swift */,
-				ECA465A921F6325C00D2885C /* JSON_Translate.swift */,
-				ECA465A721F627B600D2885C /* Exchange.swift */,
-				EC4AF14D21F78B0700EBB6D5 /* JSON_Rate.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

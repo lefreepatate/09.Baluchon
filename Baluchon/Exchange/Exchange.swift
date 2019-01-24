@@ -7,19 +7,21 @@
 //
 
 import Foundation
+
 class Exchange {
    static var shared = Exchange()
    init() {}
+   static let key = "***"
    static let rateURL =
-      URL(string: "http://data.fixer.io/api/latest")!
+      URL(string: "http://data.fixer.io/api/latest?access_key=\(key)&symbols=USD")!
    
    private var task: URLSessionDataTask?
    
-   func getRate(callBack: @escaping (Bool, Double?) -> Void) {
-      let request = createRequest()
-      let session = URLSession(configuration: .default)
-      
+   func getRate(with amount: String, callBack: @escaping (Bool, Float?) -> Void) {
+      let request = createRequest(with: amount)
       task?.cancel()
+      
+      let session = URLSession.shared
       task = session.dataTask(with: request) { (data, response, error) in
          DispatchQueue.main.async {
             guard let data = data, error == nil else {
@@ -30,22 +32,22 @@ class Exchange {
                callBack(false, nil)
                return
             }
-            guard let responseJSON = try? JSONDecoder().decode(Rates.self, from: data),
-               let rate = responseJSON.uSD else {
+            guard let responseJSON = try? JSONDecoder().decode(RatesData.self, from: data),
+               let rate = responseJSON.rates?.uSD else {
                   callBack(false, nil)
                   return
             }
-            callBack(true, rate)
+            let usdRate = Float(rate)
+            let dollars = Float(amount.replacingOccurrences(of: ",", with: "."))!
+            let euros = dollars/usdRate
+            callBack(true, euros)
          }
       }
       task?.resume()
    }
-   private func createRequest() -> URLRequest {
-      let key = "***"
-      let body = "?access_key=\(key)&symbols=USD"
-      var request = URLRequest(url: Translate.translateUrl)
+   private func createRequest(with amount: String) -> URLRequest {
+      var request = URLRequest(url: Exchange.rateURL)
       request.httpMethod = "POST"
-      request.httpBody = body.data(using: .utf8)
       return request
    }
 }
