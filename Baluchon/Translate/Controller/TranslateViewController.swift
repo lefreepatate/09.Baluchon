@@ -19,7 +19,7 @@ class TranslateViewController: UIViewController, UITextFieldDelegate {
       Translate.shared.getTranslate(with: textToTranslate.text ?? "") { (success, translated) in
          self.toggleActivityIndicator(shown: false)
          if success, let translated = translated {
-            self.update(translate: translated)
+            self.textTranslated.text = translated
          } else {
             self.presentAlert(with: "The translate failed")
          }
@@ -29,10 +29,6 @@ class TranslateViewController: UIViewController, UITextFieldDelegate {
    private func toggleActivityIndicator(shown: Bool) {
       buttonTranslate.isHidden = shown
       activityIndicator.isHidden = !shown
-   }
-   
-   private func update(translate: String) {
-      textTranslated.text = translate
    }
    private func presentAlert(with message: String) {
       let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
