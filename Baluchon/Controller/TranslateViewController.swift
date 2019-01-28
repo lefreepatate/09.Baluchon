@@ -13,10 +13,21 @@ class TranslateViewController: UIViewController, UITextFieldDelegate {
    @IBOutlet weak var textTranslated: UILabel!
    @IBOutlet weak var buttonTranslate: UIButton!
    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+   @IBOutlet weak var language: UILabel!
    
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      buttonTranslate.layer.cornerRadius = buttonTranslate.frame.size.height/2
+      view.setGradientBackground(colorOne: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), colorTwo: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+      self.textToTranslate.backgroundColor = UIColor.clear
+   }
+   
+   @IBAction func changeLanguageButton(_ sender: UIButton) {
+      changeLanguage()
+   }
    @IBAction func tappedTranslateButton(_ sender: UIButton) {
       toggleActivityIndicator(shown: true)
-      Translate.shared.getTranslate(with: textToTranslate.text ?? "") { (success, translated) in
+      Translate.shared.getTranslate(with: textToTranslate.text!, language: textToTranslate.placeholder!) { (success, translated) in
          self.toggleActivityIndicator(shown: false)
          if success, let translated = translated {
             self.textTranslated.text = translated
@@ -25,7 +36,19 @@ class TranslateViewController: UIViewController, UITextFieldDelegate {
          }
       }
    }
-
+   
+   private func changeLanguage() {
+      textToTranslate.text = ""
+      if textToTranslate.placeholder == "FR" {
+         textToTranslate.placeholder = "EN"
+         textTranslated.text = "FR"
+         language.text = "TRANSLATION"
+      } else if textToTranslate.placeholder == "EN" {
+         textToTranslate.placeholder = "FR"
+         textTranslated.text = "EN"
+         language.text = "TRADUCTION"
+      }
+   }
    private func toggleActivityIndicator(shown: Bool) {
       buttonTranslate.isHidden = shown
       activityIndicator.isHidden = !shown

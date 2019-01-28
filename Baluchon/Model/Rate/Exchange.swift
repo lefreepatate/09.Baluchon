@@ -11,17 +11,20 @@ import Foundation
 class Exchange {
    static var shared = Exchange()
    init() {}
-   static let key = "***"
-   static let rateURL =
+   private static let key = "***"
+   private static let rateURL =
       URL(string: "http://data.fixer.io/api/latest?access_key=\(key)&symbols=USD")!
    
    private var task: URLSessionDataTask?
+   private var session = URLSession.shared
+   init(session: URLSession) {
+      self.session = session
+   }
    
-   func getRate(with amount: String, callBack: @escaping (Bool, Float?) -> Void) {
-      let request = createRequest(with: amount)
+   func getRate(with amount: String, symbol: String, callBack: @escaping (Bool, Float?) -> Void) {
+      let request = createRequest()
       task?.cancel()
       
-      let session = URLSession.shared
       task = session.dataTask(with: request) { (data, response, error) in
          DispatchQueue.main.async {
             guard let data = data, error == nil else {
@@ -39,13 +42,18 @@ class Exchange {
             }
             let usdRate = Float(rate)
             let dollars = Float(amount.replacingOccurrences(of: ",", with: "."))!
-            let euros = dollars/usdRate
-            callBack(true, euros)
+            var total: Float = 0
+            if symbol == "$" {
+               total = dollars/usdRate
+            } else if symbol == "€" {
+               total = dollars*usdRate
+            }
+            callBack(true, total)
          }
       }
       task?.resume()
    }
-   private func createRequest(with amount: String) -> URLRequest {
+   private func createRequest() -> URLRequest {
       var request = URLRequest(url: Exchange.rateURL)
       request.httpMethod = "POST"
       return request

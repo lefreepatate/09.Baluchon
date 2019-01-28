@@ -38,6 +38,36 @@
                ReferencedContainer = "container:Baluchon.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC50467E21FF49490086E207"
+               BuildableName = "BaluchonTestsCaste.xctest"
+               BlueprintName = "BaluchonTestsCaste"
+               ReferencedContainer = "container:Baluchon.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC50469421FF55760086E207"
+               BuildableName = "BaluchonTestCase.xctest"
+               BlueprintName = "BaluchonTestCase"
+               ReferencedContainer = "container:Baluchon.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ECC014EF21FF629C009F0B7F"
+               BuildableName = "BaluchonTestCase.xctest"
+               BlueprintName = "BaluchonTestCase"
+               ReferencedContainer = "container:Baluchon.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

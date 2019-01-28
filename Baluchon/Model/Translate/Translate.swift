@@ -12,15 +12,20 @@ class Translate {
    static var shared = Translate()
    init() {}
    private var task: URLSessionDataTask?
-   static let translateUrl =
+   private static let translateUrl =
       URL(string: "https://translation.googleapis.com/language/translate/v2?")!
    
-   func getTranslate(with text: String, callBack: @escaping (Bool, String?) -> Void) {
+   private var session = URLSession.shared
+   init(session: URLSession) {
+      self.session = session
+   }
+   
+   func getTranslate(with text: String, language: String,
+                     callBack: @escaping (Bool, String?) -> Void) {
       
-      let request = createRequest(with: text)
+      let request = createRequest(with: text, language: language)
       task?.cancel()
       
-      let session = URLSession.shared
       task = session.dataTask(with: request) { (data, response, error) in
          DispatchQueue.main.async {
             guard let data = data, error == nil else {
@@ -41,10 +46,17 @@ class Translate {
       }
       task?.resume()
    }
-   private func createRequest(with text: String) -> URLRequest {
+   private func createRequest(with text: String, language: String) -> URLRequest {
+      var source = ""
+      var target = ""
       let key = "***"
-      let source = "fr"
-      let target = "es"
+      if language == "FR" {
+         source = "fr"
+         target = "en"
+      } else if language == "EN" {
+         source = "en"
+         target = "fr"
+      }
       let body = "key=\(key)&source=\(source)&target=\(target)&q=\(text)"
       
       var request = URLRequest(url: Translate.translateUrl)
