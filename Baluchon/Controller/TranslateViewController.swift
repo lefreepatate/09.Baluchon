@@ -27,7 +27,7 @@ class TranslateViewController: UIViewController, UITextFieldDelegate {
    }
    @IBAction func tappedTranslateButton(_ sender: UIButton) {
       toggleActivityIndicator(shown: true)
-      Translate.shared.getTranslate(with: textToTranslate.text!, language: textToTranslate.placeholder!) { (success, translated) in
+      Translate.shared.getTranslate(with: textToTranslate.text!, lang: textToTranslate.placeholder!) { (success, translated) in
          self.toggleActivityIndicator(shown: false)
          if success, let translated = translated {
             self.textTranslated.text = translated

@@ -20,10 +20,10 @@ class Translate {
       self.session = session
    }
    
-   func getTranslate(with text: String, language: String,
+   func getTranslate(with text: String, lang: String,
                      callBack: @escaping (Bool, String?) -> Void) {
       
-      let request = createRequest(with: text, language: language)
+      let request = createRequest(with: text, language: lang)
       task?.cancel()
       
       task = session.dataTask(with: request) { (data, response, error) in

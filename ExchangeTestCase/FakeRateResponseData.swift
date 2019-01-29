@@ -8,20 +8,20 @@
 
 import Foundation
 
-class FakeResponseData {
-   static var translateCorrectData: Data? {
-      let bundle = Bundle(for: FakeResponseData.self)
-      let bundleUrl = bundle.url(forResource: "Translate", withExtension: "json")
+class FakeRateResponseData {
+   static var rateCorrectData: Data? {
+      let bundle = Bundle(for: FakeRateResponseData.self)
+      let bundleUrl = bundle.url(forResource: "Fixer", withExtension: "json")
       return try! Data(contentsOf: bundleUrl!)
    }
    static let responseOK = HTTPURLResponse(url:
-      URL(string: "https://translation.googleapis.com/language/translate/v2")!,
+      URL(string: "http://data.fixer.io/api/latest?")!,
                                     statusCode: 200, httpVersion: nil, headerFields: nil)
    static let responseKO = HTTPURLResponse(url:
-      URL(string: "https://translation.googleapis.com/language/translate/v2")!,
+      URL(string: "http://data.fixer.io/api/latest?")!,
                                     statusCode: 500, httpVersion: nil, headerFields: nil)
-   static let incorrectTranslateData = "erreur".data(using: .utf8)
-   class TranslateError: Error {}
-   static let error = TranslateError()
+   static let incorrectRateData = "erreur".data(using: .utf8)
+   class RateError: Error {}
+   static let error = RateError()
 }
 

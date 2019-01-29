@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Baluchon.xcodeproj">
+      location = "self:/Users/k-rlos/Documents/OCR/Parcours/09.Baluchon/Baluchon.xcodeproj">
    </FileRef>
 </Workspace>

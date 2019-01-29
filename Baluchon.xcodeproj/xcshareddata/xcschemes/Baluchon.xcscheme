@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -52,9 +53,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EC50469421FF55760086E207"
-               BuildableName = "BaluchonTestCase.xctest"
-               BlueprintName = "BaluchonTestCase"
+               BlueprintIdentifier = "ECC014EF21FF629C009F0B7F"
+               BuildableName = "BaluchonTranslateTestCase.xctest"
+               BlueprintName = "BaluchonTranslateTestCase"
                ReferencedContainer = "container:Baluchon.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -63,8 +64,38 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ECC014EF21FF629C009F0B7F"
-               BuildableName = "BaluchonTestCase.xctest"
-               BlueprintName = "BaluchonTestCase"
+               BuildableName = "BaluchonTranslateTestCase.xctest"
+               BlueprintName = "BaluchonTranslateTestCase"
+               ReferencedContainer = "container:Baluchon.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC1A96F822005D1C00FB4320"
+               BuildableName = "TranslateTestCase.xctest"
+               BlueprintName = "TranslateTestCase"
+               ReferencedContainer = "container:Baluchon.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC1A970B22005EFB00FB4320"
+               BuildableName = "ExchangeTestCase.xctest"
+               BlueprintName = "ExchangeTestCase"
+               ReferencedContainer = "container:Baluchon.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC1A97202200655300FB4320"
+               BuildableName = "WeatherTestCase.xctest"
+               BlueprintName = "WeatherTestCase"
                ReferencedContainer = "container:Baluchon.xcodeproj">
             </BuildableReference>
          </TestableReference>

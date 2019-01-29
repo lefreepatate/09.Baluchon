@@ -7,12 +7,12 @@
 //
 
 import Foundation
-class Weather {
-   
+
+class Weather { 
    static var shared = Weather()
    init() {}
    private var task: URLSessionDataTask?
-   var session = URLSession.shared
+   private var session = URLSession.shared
    init(session: URLSession) {
       self.session = session
    }

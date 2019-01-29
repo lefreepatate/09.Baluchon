@@ -34,7 +34,8 @@ class ExchangeRateViewController: UIViewController {
    }
    
    private func getExchange(with textField: UITextField!) {
-      Exchange.shared.getRate(with: textField.text!, symbol: amountToConvert.placeholder!) { (success, rate) in
+      Exchange.shared.getRate(with: textField.text!, symbol: amountToConvert.placeholder!) {
+         (success, rate) in
          self.toggleActivityIndicator(shown: false)
          if success, let rate = rate {
             self.update(with: rate)
