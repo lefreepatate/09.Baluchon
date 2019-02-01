@@ -21,8 +21,9 @@
 		EC1A972E220065AA00FB4320 /* LocalWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = EC1A972D220065AA00FB4320 /* LocalWeather.json */; };
 		EC1A9731220065CA00FB4320 /* FakeWeatherResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1A972F220065CA00FB4320 /* FakeWeatherResponseData.swift */; };
 		EC1A9732220065CA00FB4320 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1A9730220065CA00FB4320 /* URLSessionFake.swift */; };
-		EC1A97332200A3B100FB4320 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC1A97252200655300FB4320 /* Info.plist */; };
-		EC1A97342200B24400FB4320 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC1A971022005EFB00FB4320 /* Info.plist */; };
+		EC2791312202F87600A37839 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC27912F2202F87500A37839 /* Lato-Light.ttf */; };
+		EC2791342202F8BC00A37839 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC2791332202F8BC00A37839 /* Lato-Black.ttf */; };
+		EC27913622034E1500A37839 /* WeatherIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27913522034E1500A37839 /* WeatherIcons.swift */; };
 		EC4AF14E21F78B0700EBB6D5 /* JSON_Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4AF14D21F78B0700EBB6D5 /* JSON_Rate.swift */; };
 		EC801A6021F9BF7C002906F9 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC801A5F21F9BF7C002906F9 /* Weather.swift */; };
 		EC801A6221F9CB5E002906F9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC801A6121F9CB5E002906F9 /* WeatherViewController.swift */; };
@@ -36,7 +37,6 @@
 		ECA465A621F5CD5F00D2885C /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA465A521F5CD5F00D2885C /* Translate.swift */; };
 		ECA465A821F627B600D2885C /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA465A721F627B600D2885C /* Exchange.swift */; };
 		ECA465AA21F6325C00D2885C /* JSON_Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA465A921F6325C00D2885C /* JSON_Translate.swift */; };
-		ECC014E821FF6195009F0B7F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECC014E621FF6195009F0B7F /* Info.plist */; };
 		ECC014FD21FF6436009F0B7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC014FC21FF6435009F0B7F /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +82,9 @@
 		EC1A972D220065AA00FB4320 /* LocalWeather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocalWeather.json; sourceTree = "<group>"; };
 		EC1A972F220065CA00FB4320 /* FakeWeatherResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWeatherResponseData.swift; sourceTree = "<group>"; };
 		EC1A9730220065CA00FB4320 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
+		EC27912F2202F87500A37839 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		EC2791332202F8BC00A37839 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
+		EC27913522034E1500A37839 /* WeatherIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherIcons.swift; path = Baluchon/Controller/WeatherIcons.swift; sourceTree = SOURCE_ROOT; };
 		EC4AF14D21F78B0700EBB6D5 /* JSON_Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON_Rate.swift; sourceTree = "<group>"; };
 		EC50468B21FF4A610086E207 /* Translate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Translate.json; sourceTree = "<group>"; };
 		EC50468D21FF4B6B0086E207 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
@@ -99,7 +102,6 @@
 		ECA465A521F5CD5F00D2885C /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
 		ECA465A721F627B600D2885C /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		ECA465A921F6325C00D2885C /* JSON_Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON_Translate.swift; sourceTree = "<group>"; };
-		ECC014E721FF6195009F0B7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
 		ECC014FC21FF6435009F0B7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		ECC014FE21FF6474009F0B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				EC801A6121F9CB5E002906F9 /* WeatherViewController.swift */,
+				EC27913522034E1500A37839 /* WeatherIcons.swift */,
 				ECA4658221F4C49A00D2885C /* TranslateViewController.swift */,
 				ECA4658421F4C49A00D2885C /* ExchangeRateViewController.swift */,
 			);
@@ -226,6 +229,8 @@
 				ECA4658021F4C49A00D2885C /* AppDelegate.swift */,
 				ECA4658921F4C49C00D2885C /* Assets.xcassets */,
 				ECC014E621FF6195009F0B7F /* Info.plist */,
+				EC2791332202F8BC00A37839 /* Lato-Black.ttf */,
+				EC27912F2202F87500A37839 /* Lato-Light.ttf */,
 			);
 			path = Baluchon;
 			sourceTree = "<group>";
@@ -402,7 +407,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC1A97342200B24400FB4320 /* Info.plist in Resources */,
 				EC1A971C220062EF00FB4320 /* Fixer.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +417,6 @@
 			files = (
 				EC1A972E220065AA00FB4320 /* LocalWeather.json in Resources */,
 				EC1A972C2200657000FB4320 /* NewYorkWeather.json in Resources */,
-				EC1A97332200A3B100FB4320 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,10 +424,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC2791312202F87600A37839 /* Lato-Light.ttf in Resources */,
 				ECA4658D21F4C49C00D2885C /* LaunchScreen.storyboard in Resources */,
 				ECA4658A21F4C49C00D2885C /* Assets.xcassets in Resources */,
-				ECC014E821FF6195009F0B7F /* Info.plist in Resources */,
 				ECC014FD21FF6436009F0B7F /* Default-568h@2x.png in Resources */,
+				EC2791342202F8BC00A37839 /* Lato-Black.ttf in Resources */,
 				ECA4658821F4C49A00D2885C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +477,7 @@
 				ECA465AA21F6325C00D2885C /* JSON_Translate.swift in Sources */,
 				ECA465A821F627B600D2885C /* Exchange.swift in Sources */,
 				EC8CB07C21FCE2F80066855E /* JSON_Weather.swift in Sources */,
+				EC27913622034E1500A37839 /* WeatherIcons.swift in Sources */,
 				EC801A6021F9BF7C002906F9 /* Weather.swift in Sources */,
 				EC4AF14E21F78B0700EBB6D5 /* JSON_Rate.swift in Sources */,
 				ECA4658321F4C49A00D2885C /* TranslateViewController.swift in Sources */,
@@ -519,7 +524,6 @@
 		ECC014E621FF6195009F0B7F /* Info.plist */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ECC014E721FF6195009F0B7F /* en */,
 				ECC014FE21FF6474009F0B7F /* Base */,
 			);
 			name = Info.plist;
