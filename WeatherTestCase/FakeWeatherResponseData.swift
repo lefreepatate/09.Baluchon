@@ -15,17 +15,28 @@ class FakeWeatherResponseData {
       return try! Data(contentsOf: bundleUrl!)
    }
    
+   static var NewYorkForecastCorrectData: Data? {
+      let bundle = Bundle(for: FakeWeatherResponseData.self)
+      let bundleUrl = bundle.url(forResource: "NewYorkForecastWeather", withExtension: "json")
+      return try! Data(contentsOf: bundleUrl!)
+   }
+   
    static var LocalCorrectData: Data? {
       let bundle = Bundle(for: FakeWeatherResponseData.self)
       let bundleUrl = bundle.url(forResource: "LocalWeather", withExtension: "json")
       return try! Data(contentsOf: bundleUrl!)
    }
+   static var LocalForecastCorrectData: Data? {
+      let bundle = Bundle(for: FakeWeatherResponseData.self)
+      let bundleUrl = bundle.url(forResource: "LocalForecastWeather", withExtension: "json")
+      return try! Data(contentsOf: bundleUrl!)
+   }
    
    static let responseOK = HTTPURLResponse(url:
-      URL(string: "http://api.openweathermap.org/data/2.5/forecast?")!,
+      URL(string: "http://api.openweathermap.org/data/2.5/weather?")!,
                                     statusCode: 200, httpVersion: nil, headerFields: nil)
    static let responseKO = HTTPURLResponse(url:
-      URL(string: "http://api.openweathermap.org/data/2.5/forecast?")!,
+      URL(string: "http://api.openweathermap.org/data/2.5/weather?")!,
                                     statusCode: 500, httpVersion: nil, headerFields: nil)
    static let incorrectWeatherData = "erreur".data(using: .utf8)
    class WeatherError: Error {}

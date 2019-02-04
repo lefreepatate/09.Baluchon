@@ -29,13 +29,18 @@ class TranslateViewController: UIViewController {
       textToTranslate.resignFirstResponder()
    }
    private func getTranslate() {
-      Translate.shared.getTranslate(with: textToTranslate.text!, lang: textToTranslate.placeholder!)
-      { (success, translated) in
+      if textToTranslate.text == "" {
+         self.presentAlert(with: "Rentrez un texte à traduire !")
          self.toggleActivityIndicator(shown: false)
-         if success, let translated = translated {
-            self.textTranslated.text = translated
-         } else {
-            self.presentAlert(with: "The translate failed")
+      } else {
+         Translate.shared.getTranslate(with: textToTranslate.text!, lang: textToTranslate.placeholder!)
+         { (success, translated) in
+            self.toggleActivityIndicator(shown: false)
+            if success, let translated = translated {
+               self.textTranslated.text = translated
+            } else {
+               self.presentAlert(with: "The translate failed")
+            }
          }
       }
    }
@@ -77,7 +82,7 @@ extension TranslateViewController {
       //  Button
       buttonTranslate.layer.cornerRadius = buttonTranslate.frame.size.height/2
       // Text to transalte  Label
-       textToTranslate.attributedPlaceholder = NSAttributedString(string: "FR", attributes: [NSAttributedString.Key.foregroundColor:#colorLiteral(red: 0, green: 0.5115655661, blue: 0.8635545373, alpha: 1)])
+      textToTranslate.attributedPlaceholder = NSAttributedString(string: "FR", attributes: [NSAttributedString.Key.foregroundColor:#colorLiteral(red: 0, green: 0.5115655661, blue: 0.8635545373, alpha: 1)])
       textToTranslate.layer.cornerRadius = textToTranslate.frame.size.height/4
       textToTranslate.clipsToBounds = true
       textToTranslate.layer.borderWidth = 2

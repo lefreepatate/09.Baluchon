@@ -1,29 +1,24 @@
 //
-//  JSON_ForecastWeather.swift
+//  JSON_Weather.swift
 //  Baluchon
 //
-//  Created by Carlos Garcia-Muskat on 26/01/2019.
+//  Created by Carlos Garcia-Muskat on 24/01/2019.
 //  Copyright © 2019 Carlos Garcia-Muskat. All rights reserved.
 //
-
 import Foundation
-
-struct WeatherData : Codable {
-    let list : [List]?
+struct DataWeather : Decodable {
+   let weather : [WeatherInfo]?
+   let main : Main?
+   let visibility : Int?
+   let dt : Int?
 }
-struct List : Codable {
-   let dt : Int
-   let main : ForecastMain
-   let weather : [ForecastWeather]
+struct WeatherInfo : Decodable {
+   let main : String?
+   let description : String?
+   let icon : String?
 }
-struct ForecastMain : Codable {
-   let temp : Double
-   let temp_min : Double
-   let temp_max : Double
-}
-struct ForecastWeather : Codable {
-   let id : Int
-   let main : String
-   let description : String
-   let icon : String
+struct Main : Decodable {
+   let temp : Double?
+   let temp_min : Double?
+   let temp_max : Double?
 }

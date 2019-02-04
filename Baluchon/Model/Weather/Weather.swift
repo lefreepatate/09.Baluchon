@@ -16,9 +16,9 @@ class Weather {
    init(session: URLSession) {
       self.session = session
    }
-   func getForecastWeather(with city: String, callBack: @escaping (Bool, [List]?) -> Void) {
-      let forecastRequest = createRequest(city: city)
-      task = session.dataTask(with: forecastRequest) { (data, response, error) in
+   func getWeather(with city: String, type: String, callBack: @escaping (Bool, [Any]?) -> Void) {
+      let request = createRequest(city: city, type: type)
+      task = session.dataTask(with: request) { (data, response, error) in
          DispatchQueue.main.async {
             guard let data = data, error == nil else {
                callBack(false, nil)
@@ -28,23 +28,38 @@ class Weather {
                callBack(false, nil)
                return
             }
-            guard let responseJSON = try? JSONDecoder().decode(WeatherData.self, from: data),
-               let responseList = responseJSON.list  else {
-                  callBack(false, nil)
-                  return
+            if type == "weather" {
+               guard let responseJSON = try? JSONDecoder().decode(DataWeather.self, from: data),
+                  let temp = responseJSON.main,
+                  let cond = responseJSON.weather![0].description?.capitalized,
+                  let icon = responseJSON.weather![0].icon,
+                  let date = responseJSON.dt else {
+                     callBack(false, nil)
+                     return
+               }
+               let roundTemp = Int(round(temp.temp!))
+               let roundMinTemp = Int(round(temp.temp_min!))
+               let roundMaxTemp = Int(round(temp.temp_max!))
+               let weather = [cond, icon, roundTemp, roundMinTemp, roundMaxTemp, date] as [Any]
+               print(weather)
+               
+               callBack(true, weather)
+            } else if type == "forecast" {
+               guard let responseJSON = try? JSONDecoder().decode(WeatherData.self, from: data),
+                  let forecast = responseJSON.list else {
+                     callBack(false, nil)
+                     return
+               }
+               callBack(true, forecast)
             }
-            let descr = responseJSON.list![0].weather[0].icon
-            print(descr)
-            callBack(true, responseList)
          }
       }
       task?.resume()
    }
-   
-  private func createRequest(city: String) -> URLRequest {
+   private func createRequest(city: String, type: String) -> URLRequest {
       let key = "***"
       let url = String(format:
-         "http://api.openweathermap.org/data/2.5/forecast?APPID=\(key)&q=\(city)&units=metric&lang=fr")
+         "http://api.openweathermap.org/data/2.5/\(type)?APPID=\(key)&q=\(city)&units=metric&lang=fr")
       let urlString = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
       let weatherURL = URL(string: urlString)!
       var request = URLRequest(url: weatherURL)
