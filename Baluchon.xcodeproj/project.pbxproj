@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC12489922107F60004440E9 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC12489822107F5F004440E9 /* Lato-Regular.ttf */; };
 		EC1A96FC22005D1C00FB4320 /* TranslateTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1A96FB22005D1C00FB4320 /* TranslateTestCase.swift */; };
 		EC1A970322005D3C00FB4320 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC50468D21FF4B6B0086E207 /* FakeResponseData.swift */; };
 		EC1A970422005D3C00FB4320 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC50468F21FF511A0086E207 /* URLSessionFake.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC12489822107F5F004440E9 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		EC1A96EA2200550F00FB4320 /* TranslateFR.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TranslateFR.json; sourceTree = "<group>"; };
 		EC1A96F922005D1C00FB4320 /* TranslateTestCase.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslateTestCase.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1A96FB22005D1C00FB4320 /* TranslateTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTestCase.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				ECA4658021F4C49A00D2885C /* AppDelegate.swift */,
 				ECA4658921F4C49C00D2885C /* Assets.xcassets */,
 				ECC014E621FF6195009F0B7F /* Info.plist */,
+				EC12489822107F5F004440E9 /* Lato-Regular.ttf */,
 				EC2791332202F8BC00A37839 /* Lato-Black.ttf */,
 				EC27912F2202F87500A37839 /* Lato-Light.ttf */,
 			);
@@ -436,6 +439,7 @@
 				ECA4658D21F4C49C00D2885C /* LaunchScreen.storyboard in Resources */,
 				ECA4658A21F4C49C00D2885C /* Assets.xcassets in Resources */,
 				ECC014FD21FF6436009F0B7F /* Default-568h@2x.png in Resources */,
+				EC12489922107F60004440E9 /* Lato-Regular.ttf in Resources */,
 				EC2791342202F8BC00A37839 /* Lato-Black.ttf in Resources */,
 				ECA4658821F4C49A00D2885C /* Main.storyboard in Resources */,
 			);
