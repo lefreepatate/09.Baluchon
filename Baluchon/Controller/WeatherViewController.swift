@@ -9,42 +9,44 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-
-   // Local
-   @IBOutlet weak var localTemp: UILabel!
-   @IBOutlet weak var localMinTemp: UILabel!
-   @IBOutlet weak var localMaxTemp: UILabel!
-   @IBOutlet weak var localDescr: UILabel!
-   @IBOutlet var localForecast: [UILabel]!
    // NY
+   @IBOutlet weak var iconLabel: UILabel!
    @IBOutlet weak var newYorkTemp: UILabel!
    @IBOutlet weak var newYorkDescr: UILabel!
    @IBOutlet weak var new_yorkMinTemp: UILabel!
    @IBOutlet weak var new_yorkMaxTemp: UILabel!
    @IBOutlet var nyForecast: [UILabel]!
+   // Local
+   @IBOutlet weak var iconLocalLabel: UILabel!
+   @IBOutlet weak var localTemp: UILabel!
+   @IBOutlet weak var localMinTemp: UILabel!
+   @IBOutlet weak var localMaxTemp: UILabel!
+   @IBOutlet weak var localDescr: UILabel!
+   @IBOutlet var localForecast: [UILabel]!
    
    override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
-      getWeather(with: "Lille", descr: localDescr, temp: localTemp,
+      getWeather(with: "Lille", descr: localDescr, icon: iconLocalLabel, temp: localTemp,
                  tempMin: localMinTemp, tempMax: localMaxTemp, days: localForecast)
-      getWeather(with: "New York", descr: newYorkDescr, temp: newYorkTemp,
+      getWeather(with: "New York", descr: newYorkDescr, icon: iconLabel, temp: newYorkTemp,
                  tempMin: new_yorkMinTemp, tempMax: new_yorkMaxTemp, days: nyForecast)
    }
    override func viewDidLoad() {
       super.viewDidLoad()
       view.setGradientBackground(colorOne: #colorLiteral(red: 0.02950449102, green: 0.1226746961, blue: 0.1998404264, alpha: 1), colorTwo: #colorLiteral(red: 0.09552211314, green: 0.2562807798, blue: 0.3702481985, alpha: 1),
                                  xS: 0, yS: 0, xE: 1, yE: 1)
-      
-      
    }
-   private func getWeather(with city: String, descr: UILabel!, temp: UILabel!, tempMin: UILabel!, tempMax: UILabel!, days: [UILabel]!) {
+   private func getWeather(with city: String, descr: UILabel!, icon: UILabel!, temp: UILabel!,
+                           tempMin: UILabel!, tempMax: UILabel!, days: [UILabel]!) {
       Weather.shared.getWeather(with: city, type: "weather") { (success, weather) in
          if success, let weather = weather {
-            descr.text = "\(weather[0])\n"
-            self.tempBackgroundColor(with: weather[2] as! Int, label: temp)
+            descr.text = "\(weather[0])"
+            icon.text = ""
+            self.tempBackgroundColor(with: weather[2] as! Int, label: temp,
+                                     icon: weather[1] as! String)
             self.tempColor(with: weather[3] as! Int, label: tempMin)
             self.tempColor(with: weather[4] as! Int, label: tempMax)
-            self.iconAttachement(with: descr, text: descr.text!, iconImage: weather[1] as! String)
+            self.iconAttachement(with: icon, text: icon.text!, iconImage: weather[1] as! String)
             self.get4daysWeather(with: city, days: days)
          } else {
             self.presentAlert(with: "The weather failed")
@@ -56,15 +58,13 @@ class WeatherViewController: UIViewController {
          if success, let forecast = forecast as! [List]? {
             var nmbr = 0
             for label in days {
+               label.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
                nmbr += 8
                let icon = "\(forecast[nmbr].weather[0].icon)"
                let temp = Int(round(forecast[nmbr].main.temp))
                let dateformater = "\(self.dateFormat(date: forecast[nmbr].dt, format: "EE d"))"
-               self.tempColor(with: temp, label: label)
-               label.text = "\(dateformater.capitalized)\n"
-               label.text?.append("\(temp) °C\n")
+               label.text = "\(dateformater.capitalized)\n\(temp) °C\n"
                self.iconAttachement(with: label, text: label.text!, iconImage: icon)
-               print("Ville: \(city)\n Date: \(dateformater)\n Heure: \(forecast[nmbr].dt_txt!)\n Icon: \(icon)")
             }
          } else {
             self.presentAlert(with: "Forecast failed")
@@ -78,19 +78,6 @@ class WeatherViewController: UIViewController {
       dateFormatter.locale = Locale(identifier: "fr")
       let date = Date(timeIntervalSince1970: TimeInterval(date))
       return "\(dateFormatter.string(from: date))"
-   }
-   // Change color of font depending on the temperature blue = cold, yellow = temperate, orange = hot
-   private func tempColor(with temp: Int, label: UILabel) {
-      temp < 0 ? (label.backgroundColor = #colorLiteral(red: 0.2549601197, green: 0.5899073482, blue: 0.6969276667, alpha: 1)) : (label.backgroundColor = #colorLiteral(red: 0.827537477, green: 0.4212024808, blue: 0.02249474823, alpha: 1))
-      label.layer.cornerRadius = label.frame.size.width/2
-      label.clipsToBounds = true
-      label.text = "\(temp)°C"
-   }
-   private func tempBackgroundColor(with temp: Int, label: UILabel) {
-     temp < 0 ? (label.backgroundColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 1)) : (label.backgroundColor = #colorLiteral(red: 1, green: 0.5075404644, blue: 0, alpha: 1))
-      label.layer.cornerRadius = label.frame.size.height/2
-      label.clipsToBounds = true
-      label.text = "\(temp)°C"
    }
    private func presentAlert(with message: String) {
       let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -108,6 +95,41 @@ extension UIView {
       gradientLayer.startPoint = CGPoint(x: xS, y: yS)
       gradientLayer.endPoint = CGPoint(x: xE, y: yE)
       layer.insertSublayer(gradientLayer, at: 0)
+   }
+}
+// Change color of font depending on the temperature blue = cold, yellow = temperate, orange = hot
+extension WeatherViewController {
+   func tempColor(with temp: Int, label: UILabel) {
+      if temp <= 10 { label.textColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 1) }
+      else if 11...25 ~= temp { label.textColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 1) }
+      else { label.textColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 1) }
+      label.text = "\(temp)°C"
+   }
+   func tempBackgroundColor(with temp: Int, label: UILabel, icon: String) {
+      dayNightBackground(with: temp, label: label, dayNight: icon)
+      label.layer.cornerRadius = label.frame.size.height/2
+      label.clipsToBounds = true
+      label.text = "\(temp)°C"
+   }
+   func dayNightBackground(with temp: Int, label: UILabel!, dayNight: String) {
+      borderTempColor(with: temp, label: label)
+      if dayNight.contains("d") {
+         if temp <= 10 { label.backgroundColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 0.8) }
+         else if 11...25 ~= temp { label.backgroundColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 0.8) }
+         else { label.backgroundColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 0.8) }
+      } else if dayNight.contains("n") {
+         label.backgroundColor = #colorLiteral(red: 0.007809357594, green: 0.09466643745, blue: 0.1573223039, alpha: 1)
+         if temp <= 10 {label.textColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 1)  }
+         else if 11...25 ~= temp { label.textColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 1) }
+         else { label.textColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 1) }
+      }
+   }
+   func borderTempColor(with temp: Int, label: UILabel) {
+      label.layer.borderWidth = 2
+      if temp <= 10 { label.layer.borderColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 1) }
+      else if 11...25 ~= temp { label.layer.borderColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 1) }
+      else { label.layer.borderColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 1) }
+      label.text = "\(temp)°C"
    }
 }
 extension WeatherViewController {

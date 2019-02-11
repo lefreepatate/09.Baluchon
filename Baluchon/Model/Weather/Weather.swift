@@ -41,7 +41,6 @@ class Weather {
                let roundMinTemp = Int(round(temp.temp_min!))
                let roundMaxTemp = Int(round(temp.temp_max!))
                let weather = [cond, icon, roundTemp, roundMinTemp, roundMaxTemp, date] as [Any]
-               print(weather)
                
                callBack(true, weather)
             } else if type == "forecast" {
