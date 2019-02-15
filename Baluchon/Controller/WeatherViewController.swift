@@ -101,8 +101,8 @@ extension UIView {
 extension WeatherViewController {
    func tempColor(with temp: Int, label: UILabel) {
       if temp <= 10 { label.textColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 1) }
-      else if 11...25 ~= temp { label.textColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 1) }
-      else { label.textColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 1) }
+      else if 11...25 ~= temp { label.textColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1) }
+      else { label.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1) }
       label.text = "\(temp)°C"
    }
    func tempBackgroundColor(with temp: Int, label: UILabel, icon: String) {
@@ -115,20 +115,20 @@ extension WeatherViewController {
       borderTempColor(with: temp, label: label)
       if dayNight.contains("d") {
          if temp <= 10 { label.backgroundColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 0.8) }
-         else if 11...25 ~= temp { label.backgroundColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 0.8) }
-         else { label.backgroundColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 0.8) }
+         else if 11...25 ~= temp { label.backgroundColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 0.8) }
+         else { label.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.8) }
       } else if dayNight.contains("n") {
          label.backgroundColor = #colorLiteral(red: 0.007809357594, green: 0.09466643745, blue: 0.1573223039, alpha: 1)
          if temp <= 10 {label.textColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 1)  }
-         else if 11...25 ~= temp { label.textColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 1) }
-         else { label.textColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 1) }
+         else if 11...25 ~= temp { label.textColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1) }
+         else { label.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1) }
       }
    }
    func borderTempColor(with temp: Int, label: UILabel) {
       label.layer.borderWidth = 2
       if temp <= 10 { label.layer.borderColor = #colorLiteral(red: 0.368086338, green: 0.8460097909, blue: 1, alpha: 1) }
-      else if 11...25 ~= temp { label.layer.borderColor = #colorLiteral(red: 1, green: 0.8419893384, blue: 0, alpha: 1) }
-      else { label.layer.borderColor = #colorLiteral(red: 1, green: 0.5432274938, blue: 0, alpha: 1) }
+      else if 11...25 ~= temp { label.layer.borderColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1) }
+      else { label.layer.borderColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1) }
       label.text = "\(temp)°C"
    }
 }
