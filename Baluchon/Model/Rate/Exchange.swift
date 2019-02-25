@@ -14,17 +14,16 @@ class Exchange {
    private static let key = "***"
    private static let rateURL =
       URL(string: "http://data.fixer.io/api/latest?access_key=\(key)&symbols=USD")!
-   
    private var task: URLSessionDataTask?
+   // MARK: -- FAKE DATATASK FOR TESTING
    private var session = URLSession.shared
    init(session: URLSession) {
       self.session = session
    }
-   
+   // MARK: -- GET FIXER API RATE
    func getRate(with amount: String, symbol: String, callBack: @escaping (Bool, Float?) -> Void) {
       let request = createRequest()
       task?.cancel()
-      
       task = session.dataTask(with: request) { (data, response, error) in
          DispatchQueue.main.async {
             guard let data = data, error == nil else {

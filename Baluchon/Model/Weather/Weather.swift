@@ -12,10 +12,12 @@ class Weather {
    static var shared = Weather()
    init() {}
    private var task: URLSessionDataTask?
+   // MARK: -- FAKE DATATASK FOR TESTING
    private var session = URLSession.shared
    init(session: URLSession) {
       self.session = session
    }
+   // MARK: -- GET OPENWEATHERMAP API RESPONSE
    func getWeather(with city: String, type: String, callBack: @escaping (Bool, [Any]?) -> Void) {
       let request = createRequest(city: city, type: type)
       task = session.dataTask(with: request) { (data, response, error) in
@@ -28,6 +30,7 @@ class Weather {
                callBack(false, nil)
                return
             }
+            // FOR THE D-DAY WEATHER
             if type == "weather" {
                guard let responseJSON = try? JSONDecoder().decode(DataWeather.self, from: data),
                   let temp = responseJSON.main,
@@ -43,6 +46,7 @@ class Weather {
                let weather = [cond, icon, roundTemp, roundMinTemp, roundMaxTemp, date] as [Any]
                
                callBack(true, weather)
+            //FORECAST 4 DAYS WEATHER
             } else if type == "forecast" {
                guard let responseJSON = try? JSONDecoder().decode(WeatherData.self, from: data),
                   let forecast = responseJSON.list else {
@@ -55,6 +59,7 @@ class Weather {
       }
       task?.resume()
    }
+   // MARK: -- API PARAMETERS
    private func createRequest(city: String, type: String) -> URLRequest {
       let key = "***"
       let url = String(format:

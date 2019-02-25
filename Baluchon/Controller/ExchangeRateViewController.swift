@@ -9,16 +9,18 @@
 import UIKit
 
 class ExchangeRateViewController: UIViewController {
-   
+   // MARK: -- OUTLETS
    @IBOutlet weak var amountToConvert: UITextField!
    @IBOutlet weak var amountConverted: UILabel!
    @IBOutlet weak var getRate: UIButton!
    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
    @IBOutlet weak var switchButton: UIButton!
+   // MARK: -- OVERRIDE
    override func viewDidLoad() {
       super.viewDidLoad()
       getDesign()
    }
+   // MARK: -- BUTTONS
    @IBAction func changeRateButton(_ sender: UIButton) {
       changeRate()
    }
@@ -27,11 +29,11 @@ class ExchangeRateViewController: UIViewController {
       getExchange(with: amountToConvert)
       amountToConvert.resignFirstResponder()
    }
+   // MARK: -- API CALL
    private func getExchange(with textField: UITextField!) {
       if textField.text == "" {
          self.presentAlert(with: "Rentrez un montant à convertir")
          self.toggleActivityIndicator(shown: false)
-         
       } else {
          Exchange.shared.getRate(with: textField.text!, symbol: amountToConvert.placeholder!) {
             (success, rate) in
@@ -44,6 +46,7 @@ class ExchangeRateViewController: UIViewController {
          }
       }
    }
+   // MARK: -- SWITCH SYMBOL EFFECTS
    private func changeRate() {
       amountToConvert.text = ""
       if amountToConvert.placeholder == "$" {
@@ -68,16 +71,17 @@ class ExchangeRateViewController: UIViewController {
       present(alertVC, animated: true, completion: nil)
    }
 }
+// MARK: -- KEYBOARD DISMISS
 extension ExchangeRateViewController {
    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
       textField.resignFirstResponder()
       return true
    }
-   
    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
       amountToConvert.resignFirstResponder()
    }
 }
+// MARK: -- DESIGN ATTRIBUTES
 extension ExchangeRateViewController {
    private func getDesign(){
       //Switch button
@@ -85,13 +89,13 @@ extension ExchangeRateViewController {
       // GetRate Button
       getRate.layer.cornerRadius = getRate.frame.size.height/2
       // AmountToConvert  Label
-       amountToConvert.layer.cornerRadius = amountToConvert.frame.size.height/4
+       amountToConvert.layer.cornerRadius = amountToConvert.frame.size.height/8
       amountToConvert.clipsToBounds = true
       amountToConvert.layer.borderWidth = 2
       amountToConvert.layer.borderColor = #colorLiteral(red: 0.4837571979, green: 0.8734973669, blue: 1, alpha: 1)
       amountToConvert.backgroundColor = UIColor.clear
       // AmountConverted Label
-      amountConverted.layer.cornerRadius = amountConverted.frame.size.height/4
+      amountConverted.layer.cornerRadius = amountConverted.frame.size.height/8
       amountConverted.layer.borderWidth = 2
       amountConverted.layer.borderColor = #colorLiteral(red: 0.4901960784, green: 0.5725490196, blue: 1, alpha: 1)
       amountConverted.clipsToBounds = true

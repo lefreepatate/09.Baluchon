@@ -40,7 +40,6 @@
 		ECBE434522049E0900C3A7FC /* JSON_Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE434422049E0900C3A7FC /* JSON_Weather.swift */; };
 		ECBE43472205ABB000C3A7FC /* LocalForecastWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = ECBE43462205ABB000C3A7FC /* LocalForecastWeather.json */; };
 		ECBE434B2205B25C00C3A7FC /* NewYorkForecastWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = ECBE434A2205B25C00C3A7FC /* NewYorkForecastWeather.json */; };
-		ECC014FD21FF6436009F0B7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC014FC21FF6435009F0B7F /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,7 +107,6 @@
 		ECBE434422049E0900C3A7FC /* JSON_Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON_Weather.swift; sourceTree = "<group>"; };
 		ECBE43462205ABB000C3A7FC /* LocalForecastWeather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocalForecastWeather.json; sourceTree = "<group>"; };
 		ECBE434A2205B25C00C3A7FC /* NewYorkForecastWeather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NewYorkForecastWeather.json; sourceTree = "<group>"; };
-		ECC014FC21FF6435009F0B7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		ECC014FE21FF6474009F0B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,7 +205,6 @@
 		ECA4657421F4C49A00D2885C = {
 			isa = PBXGroup;
 			children = (
-				ECC014FC21FF6435009F0B7F /* Default-568h@2x.png */,
 				ECA4657F21F4C49A00D2885C /* Baluchon */,
 				EC1A96FA22005D1C00FB4320 /* TranslateTestCase */,
 				EC1A970D22005EFB00FB4320 /* ExchangeTestCase */,
@@ -438,7 +435,6 @@
 				EC2791312202F87600A37839 /* Lato-Light.ttf in Resources */,
 				ECA4658D21F4C49C00D2885C /* LaunchScreen.storyboard in Resources */,
 				ECA4658A21F4C49C00D2885C /* Assets.xcassets in Resources */,
-				ECC014FD21FF6436009F0B7F /* Default-568h@2x.png in Resources */,
 				EC12489922107F60004440E9 /* Lato-Regular.ttf in Resources */,
 				EC2791342202F8BC00A37839 /* Lato-Black.ttf in Resources */,
 				ECA4658821F4C49A00D2885C /* Main.storyboard in Resources */,

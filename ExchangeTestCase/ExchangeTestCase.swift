@@ -53,13 +53,12 @@ class ExchangeTestCase: XCTestCase {
       getRateSession(with: FakeRateResponseData.rateCorrectData,
                      response: FakeRateResponseData.responseOK, error: nil, amount: "50",
                      symbol: "€", xctBool: nil, xctResponse: nil)
-      exchange.getRate(with: "50", symbol: "$"){ (succes, rate) in
+      exchange.getRate(with: "50", symbol: "$") { (succes, rate) in
          // Then
          let rate = "1.144368"
          XCTAssertTrue(succes)
          XCTAssertNotNil(rate)
          XCTAssertEqual(rate, rate)
-         self.expectation.fulfill()
       }
    }
 }

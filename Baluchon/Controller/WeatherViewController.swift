@@ -7,23 +7,30 @@
 //
 
 import UIKit
+import Foundation
 
 class WeatherViewController: UIViewController {
-   // NY
+   // MARK: -- OUTLETS
+   // NY Outlets
    @IBOutlet weak var iconLabel: UILabel!
    @IBOutlet weak var newYorkTemp: UILabel!
    @IBOutlet weak var newYorkDescr: UILabel!
    @IBOutlet weak var new_yorkMinTemp: UILabel!
    @IBOutlet weak var new_yorkMaxTemp: UILabel!
    @IBOutlet var nyForecast: [UILabel]!
-   // Local
+   // Local Outlets
    @IBOutlet weak var iconLocalLabel: UILabel!
    @IBOutlet weak var localTemp: UILabel!
    @IBOutlet weak var localMinTemp: UILabel!
    @IBOutlet weak var localMaxTemp: UILabel!
    @IBOutlet weak var localDescr: UILabel!
    @IBOutlet var localForecast: [UILabel]!
-   
+   // MARK: -- OVERRIDE
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      view.setGradientBackground(colorOne: #colorLiteral(red: 0.02950449102, green: 0.1226746961, blue: 0.1998404264, alpha: 1), colorTwo: #colorLiteral(red: 0.09552211314, green: 0.2562807798, blue: 0.3702481985, alpha: 1),
+                                 xS: 0, yS: 0, xE: 1, yE: 1)
+   }
    override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
       getWeather(with: "Lille", descr: localDescr, icon: iconLocalLabel, temp: localTemp,
@@ -31,19 +38,14 @@ class WeatherViewController: UIViewController {
       getWeather(with: "New York", descr: newYorkDescr, icon: iconLabel, temp: newYorkTemp,
                  tempMin: new_yorkMinTemp, tempMax: new_yorkMaxTemp, days: nyForecast)
    }
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      view.setGradientBackground(colorOne: #colorLiteral(red: 0.02950449102, green: 0.1226746961, blue: 0.1998404264, alpha: 1), colorTwo: #colorLiteral(red: 0.09552211314, green: 0.2562807798, blue: 0.3702481985, alpha: 1),
-                                 xS: 0, yS: 0, xE: 1, yE: 1)
-   }
+// MARK: -- Weather functions
    private func getWeather(with city: String, descr: UILabel!, icon: UILabel!, temp: UILabel!,
                            tempMin: UILabel!, tempMax: UILabel!, days: [UILabel]!) {
       Weather.shared.getWeather(with: city, type: "weather") { (success, weather) in
          if success, let weather = weather {
             descr.text = "\(weather[0])"
             icon.text = ""
-            self.tempBackgroundColor(with: weather[2] as! Int, label: temp,
-                                     icon: weather[1] as! String)
+            self.tempBackgroundColor(with: weather[2] as! Int, label: temp, icon: weather[1] as! String)
             self.tempColor(with: weather[3] as! Int, label: tempMin)
             self.tempColor(with: weather[4] as! Int, label: tempMax)
             self.iconAttachement(with: icon, text: icon.text!, iconImage: weather[1] as! String)
@@ -85,6 +87,7 @@ class WeatherViewController: UIViewController {
       present(alertVC, animated: true, completion: nil)
    }
 }
+// MARK: -- General GRADIENT EXTENSION
 extension UIView {
    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor,
                               xS: Double, yS: Double, xE: Double, yE: Double){
@@ -97,6 +100,7 @@ extension UIView {
       layer.insertSublayer(gradientLayer, at: 0)
    }
 }
+// MARK: -- COLOR FUNCTIONS DEPENDING ON WEATHER TEMPERATURE
 // Change color of font depending on the temperature blue = cold, yellow = temperate, orange = hot
 extension WeatherViewController {
    func tempColor(with temp: Int, label: UILabel) {
@@ -132,6 +136,7 @@ extension WeatherViewController {
       label.text = "\(temp)°C"
    }
 }
+// MARK: -- ICON ATTACHEMENT TO WEATHER DESCRIPTION DAYS
 extension WeatherViewController {
    func iconAttachement(with label: UILabel, text: String, iconImage: String ) {
       let string = NSMutableAttributedString(string: label.text!)

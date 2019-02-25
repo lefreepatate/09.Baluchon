@@ -11,21 +11,20 @@ import Foundation
 class Translate {
    static var shared = Translate()
    init() {}
+   
    private var task: URLSessionDataTask?
    private static let translateUrl =
       URL(string: "https://translation.googleapis.com/language/translate/v2?")!
-   
+   // MARK: -- FAKE DATATASK FOR TESTING
    private var session = URLSession.shared
    init(session: URLSession) {
       self.session = session
    }
-   
+   // MARK: -- GET GOOGLE TRANSLATE
    func getTranslate(with text: String, lang: String,
                      callBack: @escaping (Bool, String?) -> Void) {
-      
       let request = createRequest(with: text, language: lang)
       task?.cancel()
-      
       task = session.dataTask(with: request) { (data, response, error) in
          DispatchQueue.main.async {
             guard let data = data, error == nil else {
@@ -46,6 +45,7 @@ class Translate {
       }
       task?.resume()
    }
+   // MARK: -- REQUEST PARAMETERS
    private func createRequest(with text: String, language: String) -> URLRequest {
       var source = ""
       var target = ""
@@ -58,7 +58,6 @@ class Translate {
          target = "fr"
       }
       let body = "key=\(key)&source=\(source)&target=\(target)&q=\(text)"
-      
       var request = URLRequest(url: Translate.translateUrl)
       request.httpMethod = "POST"
       request.httpBody = body.data(using: .utf8)

@@ -9,17 +9,18 @@
 import UIKit
 
 class TranslateViewController: UIViewController {
+   // MARK: -- OUTLETS
    @IBOutlet weak var textToTranslate: UITextField!
    @IBOutlet weak var textTranslated: UILabel!
    @IBOutlet weak var buttonTranslate: UIButton!
    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
    @IBOutlet weak var switchButton: UIButton!
-   
+   // MARK: -- OVERRIDE
    override func viewDidLoad() {
       super.viewDidLoad()
       getDesign()
-      
    }
+   // MARK: -- BUTTONS
    @IBAction func changeLanguageButton(_ sender: UIButton) {
       changeLanguage()
    }
@@ -27,7 +28,9 @@ class TranslateViewController: UIViewController {
       toggleActivityIndicator(shown: true)
       getTranslate()
       textToTranslate.resignFirstResponder()
+      
    }
+   // MARK: -- API CALL
    private func getTranslate() {
       if textToTranslate.text == "" {
          self.presentAlert(with: "Rentrez un texte à traduire !")
@@ -44,14 +47,17 @@ class TranslateViewController: UIViewController {
          }
       }
    }
+   // MARK: -- SWITCH LANGUAGES EFFECTS
    private func changeLanguage() {
       textToTranslate.text = ""
       if textToTranslate.placeholder == "FR" {
-         textToTranslate.attributedPlaceholder = NSAttributedString(string: "EN", attributes: [NSAttributedString.Key.foregroundColor:#colorLiteral(red: 0, green: 0.5115655661, blue: 0.8635545373, alpha: 1)])
+         textToTranslate.attributedPlaceholder =
+            NSAttributedString(string: "EN", attributes: [NSAttributedString.Key.foregroundColor:#colorLiteral(red: 0, green: 0.5115655661, blue: 0.8635545373, alpha: 1)])
          textTranslated.text = "FR"
          buttonTranslate.setTitle("TRANSLATE", for: .normal)
       } else if textToTranslate.placeholder == "EN" {
-         textToTranslate.attributedPlaceholder = NSAttributedString(string: "FR", attributes: [NSAttributedString.Key.foregroundColor:#colorLiteral(red: 0, green: 0.5115655661, blue: 0.8635545373, alpha: 1)])
+         textToTranslate.attributedPlaceholder =
+            NSAttributedString(string: "FR", attributes: [NSAttributedString.Key.foregroundColor:#colorLiteral(red: 0, green: 0.5115655661, blue: 0.8635545373, alpha: 1)])
          textTranslated.text = "EN"
          buttonTranslate.setTitle("TRADUIRE", for: .normal)
       }
@@ -66,6 +72,7 @@ class TranslateViewController: UIViewController {
       present(alertVC, animated: true, completion: nil)
    }
 }
+// MARK: -- KEYBOARD DISMISS
 extension TranslateViewController {
    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
       textField.resignFirstResponder()
@@ -75,6 +82,7 @@ extension TranslateViewController {
       textToTranslate.resignFirstResponder()
    }
 }
+// MARK: -- DESIGN ATTRIBUTES
 extension TranslateViewController {
    func getDesign() {
       //Switch button
@@ -83,13 +91,13 @@ extension TranslateViewController {
       buttonTranslate.layer.cornerRadius = buttonTranslate.frame.size.height/2
       // Text to transalte  Label
       textToTranslate.attributedPlaceholder = NSAttributedString(string: "FR", attributes: [NSAttributedString.Key.foregroundColor:#colorLiteral(red: 0, green: 0.5115655661, blue: 0.8635545373, alpha: 1)])
-      textToTranslate.layer.cornerRadius = textToTranslate.frame.size.height/4
+      textToTranslate.layer.cornerRadius = textToTranslate.frame.size.height/8
       textToTranslate.clipsToBounds = true
       textToTranslate.layer.borderWidth = 2
       textToTranslate.layer.borderColor = #colorLiteral(red: 0, green: 0.2417031229, blue: 0.4070935249, alpha: 1)
       textToTranslate.backgroundColor = UIColor.clear
       // Text Translated Label
-      textTranslated.layer.cornerRadius = textTranslated.frame.size.height/4
+      textTranslated.layer.cornerRadius = textTranslated.frame.size.height/8
       textTranslated.layer.borderWidth = 2
       textTranslated.layer.borderColor = #colorLiteral(red: 0.7812640071, green: 0.1478679776, blue: 0.3184421062, alpha: 1)
       textTranslated.clipsToBounds = true
